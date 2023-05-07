@@ -17,4 +17,5 @@ CMD ["streamlit", "run", "/app/src/main.py"]
 FROM base as production
 
 COPY src .
+EXPOSE 8501
 CMD ["streamlit", "run", "/app/src/main.py"]

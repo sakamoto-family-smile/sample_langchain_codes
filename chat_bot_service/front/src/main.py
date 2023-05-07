@@ -15,7 +15,7 @@ class ChatAPIError(Exception):
     pass
 
 
-CHAT_API_URL = os.environ.get("CHAT_API_URL")
+CHAT_API_HOST = os.environ.get("CHAT_API_HOST")
 
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
@@ -43,7 +43,7 @@ def ui():
 
 
 def send_chat_message(text: str) -> str:
-    res = requests.post(url=CHAT_API_URL, json={"message": text})
+    res = requests.post(url=f"{CHAT_API_HOST}/send_message", json={"message": text})
     if res.status_code != 200:
         res.raise_for_status()
 
