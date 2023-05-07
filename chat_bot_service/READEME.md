@@ -3,8 +3,12 @@
 
 ## 必要な環境変数
 
-下記の環境変数を設定すること.
+下記の環境変数が必要なため、backend配下にsecret.jsonを下記のように作成すること.
 
-* OPENAI_API_KEY
-* GOOGLE_CSE_ID
-* GOOGLE_API_KEY
+```
+{
+  "OPENAI_API_KEY": "xxxxx",
+  "GOOGLE_CSE_ID": "xxxxx",
+  "GOOGLE_API_KEY": "xxxxx"
+}
+```
