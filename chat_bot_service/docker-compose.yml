@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+      target: local
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./backend/src:/app/"
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./data/redis:/data"

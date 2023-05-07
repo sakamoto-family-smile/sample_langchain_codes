@@ -1,0 +1,10 @@
+openai
+langchain
+tiktoken
+pypdf
+chromadb
+google-search-results
+wikipedia
+redis
+google-api-python-client
+fastapi
