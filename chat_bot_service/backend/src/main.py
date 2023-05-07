@@ -27,7 +27,7 @@ class Messages(BaseModel):
 
 
 @app.post("/send_message")
-def send_message(question: Question):
+def send_message(question: Question) -> Answer:
     try:
         res = internal_agent.get_response(message=question.message)
         return Answer(message=res)

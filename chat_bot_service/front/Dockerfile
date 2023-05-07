@@ -11,11 +11,11 @@ RUN pip install -r requirements.txt
 ###### local ############
 FROM base as local
 
-CMD ["streamlit", "run", "/app/src/main.py"]
+CMD ["streamlit", "run", "/app/main.py"]
 
 ###### production #######
 FROM base as production
 
 COPY src .
 EXPOSE 8501
-CMD ["streamlit", "run", "/app/src/main.py"]
+CMD ["streamlit", "run", "/app/main.py"]

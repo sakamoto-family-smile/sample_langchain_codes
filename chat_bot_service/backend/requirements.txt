@@ -8,3 +8,4 @@ wikipedia
 redis
 google-api-python-client
 fastapi
+uvicorn
