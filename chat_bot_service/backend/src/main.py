@@ -1,10 +1,23 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List
+import json
 
-from .agent import Agent, AgentException
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+from agent import Agent, AgentException  # noqa: E402
+
+# secret.jsonに設定されているキーを読み込む
+secret_file = os.path.join(os.path.dirname(__file__), "secret.json")
+with open(secret_file, "r") as f:
+    d = json.load(f)
+    for key, value in d.items():
+        os.environ[key] = value
 
 
+# APIの初期化
 app = FastAPI()
 internal_agent = Agent()
 

@@ -15,12 +15,12 @@ RUN pip install -r requirements.txt
 ###### local ############
 FROM base as local
 
-#COPY src .
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
 
 ###### production #######
 FROM base as production
 
 COPY src .
+COPY secret.json .
 EXPOSE 8080
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

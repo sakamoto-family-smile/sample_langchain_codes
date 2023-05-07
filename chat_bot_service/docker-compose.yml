@@ -1,6 +1,6 @@
 version: '3'
 services:
-  backend:
+  chat_backend:
     container_name: chat_backend
     build:
       context: ./backend/
@@ -11,11 +11,14 @@ services:
     volumes:
       - "./backend/src:/app/"
     environment:
-      LLM_CACHE_HOST: chat_redis_db
+      LLM_CACHE_HOST: chat_cache_db
       LLM_CACHE_PORT: 6379
-      CHAT_DB_HOST: chat_redis_db
-      CHAT_DB_PORT: 6379
-  front:
+      CHAT_DB_HOST: chat_history_db
+      CHAT_DB_PORT: 3306
+      CHAT_DB_USER: chat_user
+      CHAT_DB_PASSWORD: password
+      CHAT_DB_DATABASE_NAME: chat_history
+  chat_front:
     container_name: chat_front
     build:
       context: ./front/
@@ -26,11 +29,24 @@ services:
     volumes:
       - "./front/src:/app/"
     environment:
-      CHAT_API_URL: http://chat_backend:8080
-  redis:
-    container_name: chat_redis_db
+      CHAT_API_HOST: http://chat_backend:8080
+  chat_cache_db:
+    container_name: chat_cache_db
     image: "redis:latest"
     ports:
       - "6379:6379"
     volumes:
       - "./data/redis:/data"
+  chat_history_db:
+    container_name: chat_history_db
+    image: mysql:8.0.28
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chat_history
+      MYSQL_USER: chat_user
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./db/chat_history.cnf:/etc/mysql/conf.d/chat_history.cnf

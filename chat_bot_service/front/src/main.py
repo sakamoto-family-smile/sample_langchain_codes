@@ -26,7 +26,7 @@ def ui():
     st.header("Streamlit Chat - Demo")
 
     # ユーザーの入力待ち
-    input_text = st.text_input("You: ", "Hello, how are you?", key="input")
+    input_text = st.text_input(label="You: ", key="input")
     if input_text:
         res = send_chat_message(text=input_text)
 
