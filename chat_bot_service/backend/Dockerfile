@@ -4,7 +4,7 @@ WORKDIR /app
 
 
 RUN apt-get update
-RUN apt-get install python3-dev build-essential -y
+RUN apt-get install python3-dev build-essential default-libmysqlclient-dev -y
 
 COPY requirements.txt .
 

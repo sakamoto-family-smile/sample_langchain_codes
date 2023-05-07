@@ -1,11 +1,8 @@
 import langchain
 from langchain import OpenAI
 from langchain.schema import BaseChatMessageHistory, OutputParserException
-from langchain.memory import (
-    ConversationBufferMemory,
-    RedisChatMessageHistory,
-    SQLChatMessageHistory,
-)
+from langchain.memory import ConversationBufferMemory, RedisChatMessageHistory
+from langchain.memory.chat_message_histories import SQLChatMessageHistory
 from langchain.agents import initialize_agent, AgentExecutor
 from langchain.agents import load_tools
 from langchain.cache import RedisCache
